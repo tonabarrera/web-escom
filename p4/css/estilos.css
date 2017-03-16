@@ -1,0 +1,84 @@
+h1, h3, h2 {
+  font-family: Lobster, sans-serif;
+  margin:0;
+}
+
+footer h3 {
+  color: white;
+}
+
+header {
+  background-image: url("../img/atardecer.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white
+}
+header h1 {
+  display: inline-block;
+}
+header ul {
+  display: inline-block;
+}
+header ul li {
+  display: inline-block;
+  margin: 1em;
+  padding: 0.5em;
+  position:absolute;
+  right: 100px;
+}
+header ul li:hover {
+  background: #66a7c5;
+}
+
+.second-header {
+  background-color: #efeff1;
+  color: red;
+  margin: 0 auto;
+}
+.second-header figure img {
+  width: 400px;
+  display: inline-block;
+  height: 200px;
+}
+.second-header figure {
+  display: inline-block;
+}
+.second-header h2 {
+  color:black;
+}
+.second-header div {
+  display: inline-block;
+}
+
+.second-header span{
+  font-size: 1.5em;
+  color: white;
+  background: #66a7c5;
+  padding: 4px 12px;
+  border-radius: 50%;
+}
+.first-footer {
+  background-image: url("../img/velas.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  padding: 2em 5em;
+}
+.second-footer {
+  background: #243036;
+  height: 100px;
+  color: white;
+  text-align: center;
+}
+.second-footer p {
+  position: relative;
+  top: 45px;
+  margin: 0;
+}
+
+.first-footer div {
+  display: inline-block;
+  width: 33%;
+}

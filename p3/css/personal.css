@@ -1,0 +1,45 @@
+table, th, td, tr {
+  border: 1px solid #1203ff;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+table {
+  text-align: center;
+  margin: 0 auto;
+}
+
+body {
+  background: #c7dcff;
+}
+
+table td {
+  padding: .5em;
+}
+
+#last-table td {
+  padding: 0;
+}
+
+.main-table {
+    color: #e60b68;
+}
+
+.main-table > tbody>tr>td {
+  border: 4px dotted #00c32c;
+}
+
+table[alt="tercera"] > tbody>tr>td {
+  border: 4px dashed #fff;
+}
+
+h2, h1 {
+  text-align: center;
+  color: #feffcc;
+  letter-spacing: 4px;
+}
+
+body {
+  background-image: url("../imagen.gif");
+  color: white;
+}

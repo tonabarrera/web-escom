@@ -1,0 +1,29 @@
+body {
+  background-image: url("../souls.jpg");
+  background-repeat: no-repeat;
+  background-color: #CCAE68;
+  color: #922602;
+}
+
+input[type="text"] {
+  background: none;
+  border: none;
+  border-bottom: 2px solid #ce3e24;
+  margin: 2px;
+}
+
+fieldset ~ input {
+  padding: 8px 16px;
+  border: none;
+  color: #f6db92;
+  background-color: #0b0102;
+}
+
+fieldset {
+  border: 2px solid black;
+}
+
+fieldset > textarea {
+  background: transparent;
+  border: 1px dashed white;
+}
