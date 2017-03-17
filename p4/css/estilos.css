@@ -1,59 +1,107 @@
-h1, h3, h2 {
+@font-face {
+  font-family: 'icomoon';
+  src: url("../fonts/icomoon.eot?-tkg4ro");
+  src: url("../fonts/icomoon.eot?#iefix-tkg4ro") format('embedded-opentype'), url("../fonts/icomoon.woff?-tkg4ro") format('woff'), url("../fonts/icomoon.ttf?-tkg4ro") format('truetype'), url("../fonts/icomoon.svg?-tkg4ro#icomoon") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-icon-facebook:before {
+  content: "\ea90";
+}
+.icon-icon-twitter:before {
+  content: "\e902";
+}
+.icon-icon-instagram:before {
+  content: "\ea92";
+}
+.icon-icon-directions_run:before {
+  content: "\e900";
+}
+h1,
+h3,
+h2 {
   font-family: Lobster, sans-serif;
-  margin:0;
+  margin: 0;
 }
-
 footer h3 {
-  color: white;
+  color: #fff;
 }
-
 header {
   background-image: url("../img/atardecer.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  color: white
+  color: #fff;
+  height: 150px;
 }
 header h1 {
   display: inline-block;
+  top: 70px;
+  position: relative;
+  left: 200px;
 }
 header ul {
   display: inline-block;
+  padding: 0px;
+  right: 100px;
+  position: absolute;
+  top: 50px;
 }
 header ul li {
   display: inline-block;
   margin: 1em;
   padding: 0.5em;
-  position:absolute;
-  right: 100px;
 }
 header ul li:hover {
   background: #66a7c5;
 }
-
 .second-header {
   background-color: #efeff1;
-  color: red;
+  color: #f00;
+  padding: 2em;
+}
+.second-header .contenedor {
+  width: 900px;
   margin: 0 auto;
+  display: block;
+}
+.second-header .contenedor div {
+  display: inline-block;
+  position: relative;
+  bottom: 30px;
+}
+.second-header figure {
+  display: inline-block;
 }
 .second-header figure img {
   width: 400px;
   display: inline-block;
   height: 200px;
 }
-.second-header figure {
-  display: inline-block;
-}
 .second-header h2 {
-  color:black;
+  color: #000;
+  margin-bottom: 1em;
 }
-.second-header div {
+.second-header p {
+  width: 400px;
+  margin: 2em 0px;
+}
+.second-header span {
   display: inline-block;
-}
-
-.second-header span{
   font-size: 1.5em;
-  color: white;
+  color: #fff;
   background: #66a7c5;
   padding: 4px 12px;
   border-radius: 50%;
@@ -63,22 +111,66 @@ header ul li:hover {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  color: white;
+  color: #fff;
   padding: 2em 5em;
+}
+.first-footer h3 {
+  font-size: 1.5em;
+}
+.first-footer .columna {
+  display: inline-block;
+  width: 33%;
+}
+.first-footer .segunda >div {
+  background-color: rgba(30,9,9,0.48);
+  margin-right: 2em;
+}
+.first-footer .segunda input[type="text"] {
+  height: 2em;
+  margin-right: 4px;
+}
+.first-footer .segunda input[type="submit"] {
+  color: #f00;
+  background: #000;
+  border: none;
+  padding: 0.6em;
+}
+.first-footer .primera ul {
+  color: #000;
+  list-style: none;
+  padding: 0;
+  padding-right: 2em;
+}
+.first-footer .primera ul li {
+  border-bottom: 1px solid #f00;
+  padding: 0.5em 0;
+  margin: 0;
+}
+.first-footer .tercera h3 {
+  margin-bottom: 0.5em;
+}
+.first-footer .tercera p {
+  background: rgba(30,9,9,0.48);
+  padding-bottom: 1em;
+}
+.first-footer .tercera div {
+  border-bottom: 1px solid #f00;
+  padding-bottom: 1em;
+}
+.first-footer .tercera div a {
+  text-decoration: none;
+  color: #fff;
+  margin: 1em 1em 1em 0;
+  font-size: 1.5em;
 }
 .second-footer {
   background: #243036;
   height: 100px;
-  color: white;
+  color: #fff;
   text-align: center;
 }
 .second-footer p {
   position: relative;
   top: 45px;
   margin: 0;
-}
-
-.first-footer div {
-  display: inline-block;
-  width: 33%;
 }
