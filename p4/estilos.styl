@@ -1,3 +1,4 @@
+@import "./normalize.styl"
 @import "./fonts.styl"
 h1, h3, h2
     font-family Lobster, sans-serif
@@ -64,6 +65,70 @@ header
         padding 4px 12px
         border-radius 50%
 
+.main, .aside
+    display: inline-block;
+    color gray
+    h3
+        color black
+.main
+    width: 55%
+    padding 2em 1em 2em 3em
+    &-article figure, &-article div
+        display: inline-block;
+    &-article figure img
+        width: 300px
+        height: 200px
+        border-radius: 50%
+    &-article div
+        width: 40%
+        h3
+            color: lightblue
+            display: inline-block;
+.article
+    display inline-block;
+    width: 45%
+    margin .5em
+.final-article
+    width: 80%
+    p:nth-child(2)
+        color lightblue
+.button
+    background-color: red
+    color white
+    border none
+    padding .8em 0
+.noticias
+    .elemento
+        span
+            color lightblue
+            font-style italic
+        a
+            color red
+            &::after
+                content " >>"
+    &-sub
+        span
+            color red
+            font-size: 1.5em
+            margin-right: 1em
+#input
+    background: lightgray
+    height: 2em
+    border none
+    margin-right .5em
+#titulo
+    font-family: 'Open Sans', sans-serif;
+    color lightblue
+.contacto
+    p:nth-child(2)
+        color lightblue
+    p span
+        color red
+        font-size: 1.5em
+        margin-right 1em
+.aside
+    width: 35%
+
 .first-footer
     background-image url("../img/velas.jpg")
     background-position center
@@ -112,6 +177,20 @@ header
                 color: white
                 margin: 1em 1em 1em 0
                 font-size: 1.5em
+.terapias
+    p
+        color lightblue
+        span
+            color red
+            font-size: 2em
+            margin-right 1.5rem
+    ul
+        list-style: none
+        li
+            border-bottom: 1px solid red
+            padding: .5em
+        &:first-child
+            color red
 
 .second-footer
     background #243036
