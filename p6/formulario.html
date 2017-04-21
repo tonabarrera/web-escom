@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Práctica 3">
+    <meta name="author" content="Carlos Tonatihu Barrera">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>Práctica 2</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/formulario.css">
+  </head>
+  <body>
+      <form class="" action="formulario.html" method="post">
+        <table>
+          <tr>
+            <td>
+              <fieldset>
+                <legend>Datos Personales</legend>
+                <table>
+                  <tr><td>Nombre <br><br></td><td><input type="text" id="txtNombre"><br><br></td></tr>
+                  <tr><td>Apellidos <br><br></td><td><input type="text" id="txtApellidos"><br><br></td></tr>
+                  <tr><td>Dirección <br><br></td><td><input type="text" size="50" id="txtDireccion"><br><br></td></tr>
+                  <tr><td>Codigo<br>Postal<br></td><td><input type="text" size="4" id="txtPostal"><br><br></td></tr>
+                  <tr><td>Ciudad<br><br></td><td><input type="text" id="txtCiudad"><br><br></td></tr>
+                  <tr><td>Teléfono<br><br></td><td><input type="text" size="8" id="txtTelefono"><br><br></td></tr>
+                  <tr><td>Estado civil<br><br></td><td><select name="" id="selEstadoCivil">
+                    <option value="Soltero">Soltero</option>
+                    <option value="Casado">Casado</option>
+                    <option value="Viudo">Viudo</option>
+                  </select><br><br></td></tr>
+                </table>
+              </fieldset>
+            </td>
+            <td>
+              <fieldset>
+                <legend>Formación académica</legend>
+                <p><input type="radio" name="rdEscuela" id="rdEscuela1" value="Secundaria"> Secundaria</p>
+                <p><input type="radio" name="rdEscuela" id="rdEscuela2" value="Bachillerato"> Bachillerato</p>
+                <p><input type="radio" name="rdEscuela" id="rdEscuela3" value="Universidad"> Titulo Universitario</p>
+              </fieldset>
+              <fieldset>
+                <legend>Áreas de interés</legend>
+                <p><input type="checkbox" name="interes" id="areaProgra" value="Programación"> Programación</p>
+                <p><input type="checkbox" name="interes" id="areaBases" value="Bases"> Bases de Datos</p>
+                <p><input type="checkbox" name="interes" id="areaRedes" value="Redes"> Redes</p>
+              </fieldset>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <fieldset>
+                <legend>Idiomas</legend>
+                <p><input type="text" size="10" id="idioma1">
+                <select name="" id="selIdiomas">
+                  <option value="Defecto">Seleccionar</option>
+                  <option value="Español">Español</option>
+                </select></p>
+                <p><input type="text" size="10" id="idioma2">
+                <select name="" id="selIdiomas2">
+                  <option value="Defecto">Seleccionar</option>
+                  <option value="Ingles">Ingles</option>
+                </select></p>
+                <p><input type="text" size="10" id="idioma3">
+                <select name="" id="selIdiomas3">
+                  <option value="Defecto">Seleccionar</option>
+                  <option value="Italiano">Italiano</option>
+                </select></p>
+                <p><input type="text" size="10" id="idioma4">
+                <select name="" id="selIdiomas4">
+                  <option value="Defecto">Seleccionar</option>
+                  <option value="Frances">Frances</option>
+                </select></p>
+              </fieldset>
+            </td>
+            <td>
+              <fieldset>
+                <br>
+                <legend>Áreas de interés</legend>
+                <select class="" name="" multiple="multiple" size="8" id="selArea">
+                  <option value="Bases Datos">Bases de Datos</option>
+                  <option value="Programacion">Programación</option>
+                  <option value="Redes">Redes</option>
+                  <option value="Animacion">Animación</option>
+                  <option value="Simulacion">Simulación</option>
+                  <option value="Cripto">Criptografía</option>
+                  <option value="Estructuras de Datos">Estructuras de datos</option>
+                </select>
+              <br><br>
+              </fieldset>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" colspan="2">
+              <fieldset>
+                <legend>Comentarios</legend>
+                <textarea name="" rows="4" cols="80" id="txtComentario"></textarea>
+              </fieldset>
+              <br>
+              <input type="submit" name="" value="Enviar" id="enviar">
+              <input type="reset" name="" value="Restablecer">
+            </td>
+          </tr>
+        </table>
+      </form>
+      <script src="cookies.js" charset="utf-8"></script>
+  </body>
+</html>

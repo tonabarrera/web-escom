@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Práctica 5</title>
+        <style media="screen">
+            table, tr, th, td {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Práctica 5</h1>
+        <button type="button" name="agregar5" onClick="agregarCinco()">Agregar 5 elementos</button>
+        <button type="button" name="agregar" onClick="agregar(0)">Agregar un elemento</button>
+        <button type="button" name="eliminar" onClick="eliminar()">Eliminar un elemento</button>
+        <button type="button" name="eliminartodo" onClick="eliminarTodo()">Eliminar todos los elementos</button>
+        <br>
+        <br>
+        <table>
+            <thead>
+                <tr><th colspan="2">Tabla factorial</th></tr>
+                <tr><th>Número</th><th>Valor</th></tr>
+            </thead>
+            <tbody id="cuerpo"></tbody>
+        </table>
+        <script src="./funciones.js" charset="utf-8"></script>
+    </body>
+</html>
