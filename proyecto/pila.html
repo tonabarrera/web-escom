@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Pila</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  	<link rel="stylesheet" type="text/css" href="mi.css">
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="index.html">Inicio</a>
+      <a href="pila.html">Pila</a>
+      <a href="cola.html">Cola</a>
+      <a href="lista.html">Lista</a>
+      <a href="javascript:void(0);" class="icon" onclick="lolazo()">&#9776;</a>
+    </div>
+    <div class="main">
+      <div class="btn-container">
+        <input type="button" id="btn-push" value="Push" class="button blue"><br>
+        <div class="hidden" id="contenedor1">
+          Valor del nodo (solo números):<br>
+          <input type="text" value="" id="textValor"><br>
+          <input type="button" id="btn-crear" value="Crear nodo" class="button green" disabled>
+        </div>
+        <p class="hidden" id="contenedor2">
+          <input type="button" id="btn-insertar" value="Insertar" class="button green" disabled>
+        </p>
+        <input type="button" id="btn-pop" class="button red" value="Pop"><br>
+      </div>
+      <canvas id="canvas" width="500" height="500"></canvas>
+      <div class="code-image" id="code-container">
+      </div>
+    </div>
+    <script type="text/javascript" src="mi.js"></script>
+    <script src="./pila.js" charset="utf-8"></script>
+  </body>
+</html>
