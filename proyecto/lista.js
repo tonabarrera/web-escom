@@ -7,10 +7,11 @@ var btnAdios = document.getElementById("btn-adios")
 var cont1 = document.getElementById("contenedor1");
 var cont2 = document.getElementById("contenedor2");
 var cont3 = document.getElementById("contenedor3");
+var codeContainer = document.getElementById("code-container");
 var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");
 context.lineWidth="2";
-context.strokeStyle="blue";
+context.strokeStyle="orange";
 context.font = "16px Arial";
 var canvasWidth = canvas.width;
 var canvasHeight = canvas.height;
@@ -34,6 +35,8 @@ function drawList() {
         context.stroke();
         context.closePath();
         context.beginPath();
+        context.moveTo(stackPositionX+widthRect-5, stackPositionY);
+        context.lineTo(stackPositionX+widthRect-5, stackPositionY+heightRect)
         context.moveTo(stackPositionX+widthRect, stackPositionY+15);
         context.lineTo(stackPositionX+widthRect+25, stackPositionY+15);
         if (nodo !==lista[lista.length-1]){
@@ -66,6 +69,12 @@ function loadList() {
     }
 }
 
+function loadCode(option) {
+    var imagenes = ["crear", "insertar", "sacar"];
+    console.log(option);
+    codeContainer.innerHTML = '<img src="./img/'+imagenes[option]+'.png" width=400px class="borde">';
+}
+
 function isInt(value) {
     if (isNaN(value))
         return false
@@ -76,6 +85,8 @@ function dibuja() {
     context.clearRect(0, 231, canvasWidth, canvasHeight);
     context.clearRect(coordX, coordY-1, widthRect, heightRect);
     context.beginPath();
+    context.moveTo(coordX+widthRect-5, coordY);
+    context.lineTo(coordX+widthRect-5, coordY+heightRect)
     context.fillText(nodeValue,coordX+5, coordY+20);
     context.rect(coordX, coordY, widthRect, heightRect);
     context.stroke();
@@ -83,6 +94,10 @@ function dibuja() {
 }
 btnInsertar.addEventListener("click", function(e) {
     e.preventDefault();
+    if (lista.length>8) {
+        alert("Lista llena");
+        return;
+    }
     cont1.className = "";
     btnInsertar.disabled = true;
     btnCrear.disabled = false;
@@ -98,10 +113,13 @@ btnCrear.addEventListener("click", function(e) {
         btnMeter.disabled = false;
         btnCrear.disabled = true;
         context.beginPath();
+        context.moveTo(coordX+widthRect-5, coordY);
+        context.lineTo(coordX+widthRect-5, coordY+heightRect)
         context.fillText(nodeValue, coordX+5, coordY+20);
         context.rect(coordX, coordY, widthRect, heightRect);
         context.stroke();
         context.closePath();
+        loadCode(0);
     } else
         alert("Dato incorrecto");
 });
@@ -123,25 +141,31 @@ btnMeter.addEventListener("click", function(e) {
                 window.cancelAnimationFrame(raf);
                 coordX = canvasWidth-widthRect-5;
                 coordY = canvasHeight-heightRect-5;
-                context.clearRect(0, 150, canvasWidth, canvasHeight);
-                context.clearRect(0, 150, canvasWidth, canvasHeight);
+                for (var i =0; i< lista.length+100; i++)
+                    context.clearRect(0, 152, canvasWidth, canvasHeight);
                 drawList();
                 clearInterval(interval);
             } else
                 raf = window.requestAnimationFrame(dibuja);
         }, 2);
+        loadCode(1);
         document.getElementById("text-position").value="";
         lista.splice(index-1, 0, nodeValue);
         localStorage.setItem("lista", JSON.stringify(lista));
         cont2.className = "hidden";
         btnMeter.disabled = true;
         btnInsertar.disabled = false;
+
     } else
         alert("Dato incorrecto");
 });
 
 btnSacar.addEventListener("click", function(e) {
     e.preventDefault();
+    if (lista.length < 1){
+        alert("No hay elementos que sacar de la lista");
+        return;
+    }
     cont3.className = "";
     btnSacar.disabled = true;
     btnAdios.disabled = false;
@@ -158,6 +182,7 @@ btnAdios.addEventListener("click", function(e) {
         btnSacar.disabled = false;
         btnAdios.disabled = true;
         drawList();
+        loadCode(2);
     } else
         alert("Dato incorrecto");
 });

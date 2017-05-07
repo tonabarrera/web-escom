@@ -10,7 +10,7 @@ void crear_nodo(int valor, struct nodo *temp) {
     return;
 }
 
-void pop(struct *nodo stack) {
+void pop(struct nodo *stack) {
     struct nodo *temporal;
     if (stack == NULL)
         printf("**Pila vacia**\n");

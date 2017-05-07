@@ -33,7 +33,6 @@ function dibuja() {
 }
 function loadCode(option) {
     var imagenes = ["crear_nodo", "push", "pop"];
-    codeContainer.innerHTML = "fsdfs";
     console.log(option);
     codeContainer.innerHTML = '<img src="./img/'+imagenes[option]+'.png" width=500px class="borde">';
 }
@@ -79,6 +78,10 @@ btnPop.addEventListener("click", function(e) {
 
 btnPush.addEventListener("click", function(e) {
     e.preventDefault();
+    if (pila.length>15){
+        alert("Tope de la pila alcanzado");
+        return;
+    }
     cont1.className = "";
     btnPush.disabled = true;
     btnCrear.disabled = false;
@@ -86,6 +89,7 @@ btnPush.addEventListener("click", function(e) {
 
 btnCrear.addEventListener("click", function(e){
     nodeValue = document.getElementById("textValor").value;
+
     if (nodeValue != "" && isInt(nodeValue)) {
     context.beginPath();
     context.fillText(nodeValue, coordX+50, coordY+20);
