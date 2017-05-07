@@ -59,6 +59,10 @@ body {
   margin: auto;
   width: 117px;
 }
+.btn-container2 {
+  margin: auto;
+  width: 180px;
+}
 canvas {
   border: 1px solid black;
   margin: auto;
@@ -67,6 +71,11 @@ canvas {
 .code-image {
   margin:auto;
   width: 500px;
+}
+
+.code-image2 {
+  margin:auto;
+  width: 400px;
 }
 .hidden {
   display: none;

@@ -1,19 +1,45 @@
+<!DOCTYPE html>
 <html>
-<head>
-	<title>Lista</title>
-	<link rel="stylesheet" type="text/css" href="mi.css">
-	<script type="text/javascript" src="mi.js"></script>
-</head>
-<body>
-<div class="topnav" id="myTopnav">
-  <a href="index.html">Inicio</a>
-  <a href="pila.html">Pila</a>
-  <a href="cola.html">Cola</a>
-  <a href="lista.html">Lista</a>
-  <a href="javascript:void(0);" class="icon" onclick="lolazo()">&#9776;</a>
-</div>
-<div>
-	<p>aquiu va la lista</p>
-</div>
-</body>
+  <head>
+    <title>Lista</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="mi.css">
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="index.html">Inicio</a>
+      <a href="pila.html">Pila</a>
+      <a href="cola.html">Cola</a>
+      <a href="lista.html">Lista</a>
+      <a href="javascript:void(0);" class="icon" onclick="lolazo()">&#9776;</a>
+    </div>
+    <div class="main">
+      <div class="btn-container2">
+        <input type="button" id="btn-insertar" value="Insertar" class="button blue"><br>
+        <div class="hidden" id="contenedor1">
+          Valor del nodo (solo números):<br>
+          <input type="text" value="" id="text-nodo"><br>
+          <input type="button" id="btn-crear" value="Crear nodo" class="button green" disabled>
+        </div>
+        <div class="hidden" id="contenedor2">
+          Posición donde insertar:
+          <input type="text" value="" id="text-position"><br>
+          <input type="button" id="btn-meter" value="Insertar" class="button green" disabled>
+        </div>
+        <input type="button" id="btn-sacar" class="button red" value="Sacar">
+        <div class="hidden" id="contenedor3">
+          Posicion a sacar:
+          <input type="text" value="" id="text-sacar"><br>
+          <input type="button" id="btn-adios" value="Sacar" class="button green" disabled>
+        </div>
+      </div>
+      <canvas id="canvas" width="700" height="500"></canvas>
+      <div class="code-image2" id="code-container">
+      </div>
+    </div>
+    <script type="text/javascript" src="mi.js"></script>
+    <script src="./lista.js" charset="utf-8"></script>
+  </body>
 </html>

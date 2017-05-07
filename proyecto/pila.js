@@ -63,7 +63,6 @@ function drawStack() {
         stackPositionY = stackPositionY-heightRect;
     }
     context.clearRect(115, 0, canvasWidth, canvasHeight);
-
 }
 
 btnPop.addEventListener("click", function(e) {
@@ -83,15 +82,11 @@ btnPush.addEventListener("click", function(e) {
     cont1.className = "";
     btnPush.disabled = true;
     btnCrear.disabled = false;
-    btnInsertar.disabled = false;
-    loadCode(1);
 });
 
 btnCrear.addEventListener("click", function(e){
     nodeValue = document.getElementById("textValor").value;
     if (nodeValue != "" && isInt(nodeValue)) {
-    pila.push(nodeValue);
-    localStorage.setItem("pila", JSON.stringify(pila));
     context.beginPath();
     context.fillText(nodeValue, coordX+50, coordY+20);
     context.rect(coordX, coordY, widthRect, heightRect);
@@ -101,6 +96,7 @@ btnCrear.addEventListener("click", function(e){
     cont2.className = "";
     document.getElementById("textValor").value = "";
     loadCode(0);
+    btnInsertar.disabled = false;
     } else
         alert("Por favor inserta un número")
 });
@@ -125,6 +121,9 @@ btnInsertar.addEventListener("click", function(e){
             raf = window.requestAnimationFrame(dibuja);
     }, 2);
     cont2.className = "hidden";
+    loadCode(1);
+    pila.push(nodeValue);
+    localStorage.setItem("pila", JSON.stringify(pila));
     for (var i =0; i< pila.length+100; i++)
         context.clearRect(115, 0, canvasWidth, canvasHeight);
 
