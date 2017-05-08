@@ -73,6 +73,22 @@ function loadList() {
     }
 }
 
+function adiosNodo(index) {
+    if (isInt(index) && lista.length>=index && index>0) {
+        document.getElementById("text-sacar").value = "";
+        lista.splice(index-1, 1);
+        localStorage.setItem("lista", JSON.stringify(lista));
+        cont3.className = "hidden";
+        btnSacar.disabled = false;
+        btnAdios.disabled = true;
+        btnAdios2.disabled = true;
+        btnAdios3.disabled = true;
+        drawList();
+        loadCode(2);
+    } else
+        alert("Dato incorrecto");
+}
+
 function loadCode(option) {
     var imagenes = ["crear", "insertar", "sacar"];
     console.log(option);
@@ -96,40 +112,6 @@ function dibuja() {
     context.stroke();
     context.closePath();
 }
-btnInsertar.addEventListener("click", function(e) {
-    e.preventDefault();
-    if (lista.length>8) {
-        alert("Lista llena");
-        return;
-    }
-    cont1.className = "";
-    btnInsertar.disabled = true;
-    btnCrear.disabled = false;
-});
-
-btnCrear.addEventListener("click", function(e) {
-    e.preventDefault();
-    nodeValue = document.getElementById("text-nodo").value;
-    if (isInt(nodeValue)) {
-        document.getElementById("text-nodo").value = "";
-        cont1.className = "hidden";
-        cont2.className = "";
-        btnMeter.disabled = false;
-        btnMeter2.disabled = false;
-        btnMeter3.disabled = false;
-        btnCrear.disabled = true;
-        context.beginPath();
-        context.moveTo(coordX+widthRect-5, coordY);
-        context.lineTo(coordX+widthRect-5, coordY+heightRect)
-        context.fillText(nodeValue, coordX+5, coordY+20);
-        context.rect(coordX, coordY, widthRect, heightRect);
-        context.stroke();
-        context.closePath();
-        loadCode(0);
-    } else
-        alert("Dato incorrecto");
-});
-
 function animate(index) {
     if (isInt(index) && lista.length>=index-1 && index>0) {
         var raf = window.requestAnimationFrame(dibuja);
@@ -165,6 +147,41 @@ function animate(index) {
         alert("Dato incorrecto");
 }
 
+btnInsertar.addEventListener("click", function(e) {
+    e.preventDefault();
+    context.clearRect(0, 231, canvasWidth, canvasHeight);
+    if (lista.length>8) {
+        alert("Lista llena");
+        return;
+    }
+    cont1.className = "";
+    btnInsertar.disabled = true;
+    btnCrear.disabled = false;
+});
+
+btnCrear.addEventListener("click", function(e) {
+    e.preventDefault();
+    nodeValue = document.getElementById("text-nodo").value;
+    if (isInt(nodeValue)) {
+        document.getElementById("text-nodo").value = "";
+        cont1.className = "hidden";
+        cont2.className = "";
+        btnMeter.disabled = false;
+        btnMeter2.disabled = false;
+        btnMeter3.disabled = false;
+        btnCrear.disabled = true;
+        context.beginPath();
+        context.moveTo(coordX+widthRect-5, coordY);
+        context.lineTo(coordX+widthRect-5, coordY+heightRect)
+        context.fillText(nodeValue, coordX+5, coordY+20);
+        context.rect(coordX, coordY, widthRect, heightRect);
+        context.stroke();
+        context.closePath();
+        loadCode(0);
+    } else
+        alert("Dato incorrecto");
+});
+
 btnMeter.addEventListener("click", function(e) {
     e.preventDefault();
     var index = document.getElementById("text-position").value;
@@ -183,6 +200,7 @@ btnMeter3.addEventListener("click", function (e) {
 
 btnSacar.addEventListener("click", function(e) {
     e.preventDefault();
+    context.clearRect(0, 231, canvasWidth, canvasHeight);
     if (lista.length < 1){
         alert("No hay elementos que sacar de la lista");
         return;
@@ -194,36 +212,20 @@ btnSacar.addEventListener("click", function(e) {
     btnAdios3.disabled = false;
 });
 
-function adiosPopo(index) {
-    if (isInt(index) && lista.length>=index && index>0) {
-        document.getElementById("text-sacar").value = "";
-        lista.splice(index-1, 1);
-        localStorage.setItem("lista", JSON.stringify(lista));
-        cont3.className = "hidden";
-        btnSacar.disabled = false;
-        btnAdios.disabled = true;
-        btnAdios2.disabled = true;
-        btnAdios3.disabled = true;
-        drawList();
-        loadCode(2);
-    } else
-        alert("Dato incorrecto");
-}
-
 btnAdios.addEventListener("click", function(e) {
     e.preventDefault();
     var index = document.getElementById("text-sacar").value;
-    adiosPopo(index)
+    adiosNodo(index)
 });
 
 btnAdios2.addEventListener("click", function(e) {
     e.preventDefault();
-    adiosPopo(1);
+    adiosNodo(1);
 });
 
 btnAdios3.addEventListener("click", function(e) {
     e.preventDefault();
-    adiosPopo(lista.length);
+    adiosNodo(lista.length);
 });
 
 loadList();

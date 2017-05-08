@@ -21,11 +21,16 @@ function evaluar(cadena) {
     var cola = new Array();
     var pila = new Array();
     var pila2 = new Array();
+    var continua = false;
     for (var caracter of cadena){
         console.log(caracter);
-        if (caracter.charCodeAt(0) >47 && caracter.charCodeAt(0)<58)
-            cola.push(parseInt(caracter, 10));
-        else if (caracter==="+" || caracter==="-" || caracter==="/" || caracter==="*") {
+        if (caracter.charCodeAt(0) >47 && caracter.charCodeAt(0)<58){
+            if (continua)
+                cola.push(cola.pop()+caracter);
+            else
+                cola.push(caracter);
+            continua = true
+        } else if (caracter==="+" || caracter==="-" || caracter==="/" || caracter==="*") {
             var valor = pila.pop();
             while (valor==="+" || valor==="-" || valor==="/" || valor==="*") {
                 if (caracter==="+" || caracter==="*") {
@@ -62,6 +67,7 @@ function evaluar(cadena) {
                 }
             }
             pila.push(caracter);
+            continua = false;
         }
     }
     while (pila.length >0)
@@ -87,7 +93,7 @@ function evaluar(cadena) {
             pila2.push(b/a);
         }
         else
-            pila2.push(elemento);
+            pila2.push(parseInt(elemento, 10));
     }
     if (isNaN(pila2[0])){
         alert("Error");
