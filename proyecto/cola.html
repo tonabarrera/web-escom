@@ -2,7 +2,7 @@
 <head>
 	<title>Cola</title>
 	<link rel="stylesheet" type="text/css" href="mi.css">
-	<script type="text/javascript" src="mi.js"></script>
+	 <meta charset="utf-8">
 </head>
 <body>
 <div class="topnav" id="myTopnav">
@@ -12,8 +12,24 @@
   <a href="lista.html">Lista</a>
   <a href="javascript:void(0);" class="icon" onclick="lolazo()">&#9776;</a>
 </div>
-<div>
-	<p>Que onda tona aqui mete la cola gg y alv ajax que cargue la pagina completa</p>
-</div>
+ <div class="main">
+      <div class="btn-container">
+        <input type="button" id="btn-formar" value="Enqueve" class="button blue"><br>
+        <div class="hidden" id="contenedor1">
+          Valor del nodo (solo números):<br>
+          <input type="text" value="" id="textValor"><br>
+          <input type="button" id="btn-crear" value="Crear nodo" class="button green" disabled>
+        </div>
+        <p class="hidden" id="contenedor2">
+          <input type="button" id="btn-insertar" value="Enqueve" class="button green" disabled>
+        </p>
+        <input type="button" id="btn-sacar" class="button red" value="Dequeve"><br>
+      </div>
+      <canvas id="canvas" width="500" height="500"></canvas>
+      <div class="code-image" id="code-container">
+      </div>
+    </div>
+    <script type="text/javascript" src="mi.js"></script>
+    <script src="./cola.js" charset="utf-8"></script>
 </body>
 </html>

@@ -64,6 +64,10 @@ function drawList() {
         context.stroke();
         context.closePath();
     }
+    context.clearRect(0, 231, canvasWidth, canvasHeight);
+    context.clearRect(0, 231, canvasWidth, canvasHeight);
+    context.clearRect(0, 231, canvasWidth, canvasHeight);
+    
 }
 
 function loadList() {

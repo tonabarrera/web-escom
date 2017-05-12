@@ -26,6 +26,15 @@ body {
 .topnav .icon {
     display: none;
 }
+.wrap {
+  border: 1px solid gray;
+  border-radius: 1em;
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 2em;
+  background-color: #d0fbff;
+  box-shadow: #eaeaea 0.5em 0.5em 1.5em;
+}
 
 @media screen and (max-width: 600px) {
   .topnav a:not(:last-child) {display: none;}
