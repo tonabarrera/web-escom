@@ -35,7 +35,7 @@ function dibuja() {
 function loadCode(option) {
     var imagenes = ["crearcola", "enqueve", "dequeve"];
     console.log(option);
-    codeContainer.innerHTML = '<img src="./img/'+imagenes[option]+'.png" width=500px class="borde">';
+    codeContainer.innerHTML = '<img src="../assets/'+imagenes[option]+'.png" width=500px class="borde">';
 }
 function loadStack() {
     if(localStorage.getItem("cola")){

@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title id = "titulo">Inicio</title>
-	<link rel="stylesheet" type="text/css" href="mi.css">
+	<link rel="stylesheet" type="text/css" href="../styles/mi.css">
 	<meta charset="utf-8">
 </head>
 <body>
@@ -19,7 +19,18 @@
 	<H2>Grupo:</H2> <h4>2CM9</h4>
 	<H2>Profesora:</H2> <h4>Rivera de la Rosa Mónica</h4>
 	<H2>Materia:</H2> <h4>Tecnologías para la web</h4>
+  <div id="prueba"></div>
 </div>
-<script type="text/javascript" src="mi.js"></script>
+<script type="text/javascript" src="../app/mi.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+var root = "https://jsonplaceholder.typicode.com";
+  $.ajax({
+    url: root + "/posts/1",
+    method: "GET"
+  }).then(function(data) {
+    document.getElementById("prueba").innerHTML=data.title;
+  });
+</script>
 </body>
 </html>

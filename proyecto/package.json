@@ -1,0 +1,12 @@
+{
+  "name":"proyecto-nw",
+  "version":"1.0.0",
+  "devDependencies":{
+    "nw":"^0.18.2",
+    "nw-builder":"^3.1.2"
+  },
+  "scripts":{
+    "dev":"nw src/",
+    "prod":"nwbuild -p win64 src/ -o dist/"
+  }
+}

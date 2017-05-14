@@ -34,7 +34,7 @@ function dibuja() {
 function loadCode(option) {
     var imagenes = ["crear_nodo", "push", "pop"];
     console.log(option);
-    codeContainer.innerHTML = '<img src="./img/'+imagenes[option]+'.png" width=500px class="borde">';
+    codeContainer.innerHTML = '<img src="../assets/'+imagenes[option]+'.png" width=500px class="borde">';
 }
 function loadStack() {
     if(localStorage.getItem("pila")){
@@ -64,7 +64,7 @@ function drawStack() {
     context.clearRect(115, 0, canvasWidth, canvasHeight);
     context.clearRect(115, 0, canvasWidth, canvasHeight);
     context.clearRect(115, 0, canvasWidth, canvasHeight);
-    
+
 }
 
 btnPop.addEventListener("click", function(e) {

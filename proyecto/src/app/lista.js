@@ -67,7 +67,7 @@ function drawList() {
     context.clearRect(0, 231, canvasWidth, canvasHeight);
     context.clearRect(0, 231, canvasWidth, canvasHeight);
     context.clearRect(0, 231, canvasWidth, canvasHeight);
-    
+
 }
 
 function loadList() {
@@ -96,7 +96,7 @@ function adiosNodo(index) {
 function loadCode(option) {
     var imagenes = ["crear", "insertar", "sacar"];
     console.log(option);
-    codeContainer.innerHTML = '<img src="./img/'+imagenes[option]+'.png" width=400px class="borde">';
+    codeContainer.innerHTML = '<img src="../assets/'+imagenes[option]+'.png" width=400px class="borde">';
 }
 
 function isInt(value) {
