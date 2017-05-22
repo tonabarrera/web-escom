@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="estilos.css"?>
+<!DOCTYPE pasteleria [
+  <!ELEMENT pasteleria (seccion)*>
+  <!ELEMENT seccion (nombre, producto*)>
+  <!ELEMENT nombre (#PCDATA)>
+  <!ELEMENT producto (titulo, ingredientes, proceso)>
+  <!ELEMENT titulo (#PCDATA)>
+  <!ELEMENT ingredientes (ingrediente)*>
+  <!ELEMENT ingrediente (valor, cantidad)>
+  <!ELEMENT valor (#PCDATA)>
+  <!ELEMENT cantidad (#PCDATA)>
+  <!ELEMENT proceso (paso)*>
+  <!ELEMENT paso (#PCDATA)>
+]>
+<pasteleria>
+  <seccion>
+    <nombre>Apetitosos pasteles</nombre>
+    <producto>
+      <titulo>Pastel de queso</titulo>
+      <ingredientes>
+        <ingrediente>
+          <valor>Pan cortado en rebanadas</valor>
+          <cantidad>1/2 kg</cantidad>
+        </ingrediente>
+        <ingrediente>
+          <valor>Huevos</valor>
+          <cantidad>6</cantidad>
+        </ingrediente>
+        <ingrediente>
+          <valor>Leche</valor>
+          <cantidad>6 tazas</cantidad>
+        </ingrediente>
+        <ingrediente>
+          <valor>Queso rallado o ricota</valor>
+          <cantidad>2 tazas</cantidad>
+        </ingrediente>
+        <ingrediente>
+          <valor>Cebolla picada</valor>
+          <cantidad>1 cucharada</cantidad>
+        </ingrediente>
+        <ingrediente>
+          <valor>Cebolla picada</valor>
+          <cantidad>1 cucharada</cantidad>
+        </ingrediente>
+        <ingrediente>
+          <valor>Pimienta</valor>
+          <cantidad>2 cucharada</cantidad>
+        </ingrediente>
+      </ingredientes>
+      <proceso>
+        <paso>1. En una asadera enmantecada se coloca, en el fondo, una camada de rebanadas de pan, se espolvorean con abundante queso rallado y se vuelve a poner
+        otra camada de rebanadas de pan se cubre con el queso restante</paso>
+        <paso>2. Aoarte se bateb kis gyevis que se les agrega la leche, la sal y la cebolla y se vierte este liquido sobre las rebanadas de pan y queso. Se cocina en horno moderado
+        durante una hora mas o menos</paso>
+      </proceso>
+    </producto>
+  </seccion>
+  <seccion>
+    <nombre>Tortillas para todos los gustos</nombre>
+    <producto>
+      <titulo>Tortilla al horno</titulo>
+      <ingredientes>
+        <ingrediente>
+          <valor>Huevos</valor>
+          <cantidad>3</cantidad>
+        </ingrediente>
+        <ingrediente>
+          <valor>Queso rallado</valor>
+          <cantidad>4 cdas</cantidad>
+        </ingrediente>
+        <ingrediente>
+          <valor>Leche</valor>
+          <cantidad>1 taza</cantidad>
+        </ingrediente>
+        <ingrediente>
+          <valor>Queso fresco</valor>
+          <cantidad>6 tajadas</cantidad>
+        </ingrediente>
+        <ingrediente>
+          <valor>Sal y condimento</valor>
+          <cantidad>cantidad necesaria</cantidad>
+        </ingrediente>
+      </ingredientes>
+      <proceso>
+        <paso>1. Se baten muy bien por separado las claras y las yemas. EN estas ultimas se incorpora la sal y se continua batiendo  hasta que se espesen.
+        Se agregab kas 4 cucharadas de queso rallado, el contimento, la leche y cuando todo este bien unido, se añaden las claras batidas a nieve. En una fuente enmantecada se coloca
+      la preparaion y se distribuyen en ella las 6 tajadas de queso fresco. Se pone en el horno a temperatura sueve.</paso>
+      </proceso>
+    </producto>
+    <producto>
+      <titulo>Tortilla de arroz</titulo>
+      <ingredientes>
+        <ingrediente>
+          <valor>Arroz cocido</valor>
+          <cantidad>1/2 taza</cantidad>
+        </ingrediente>
+        <ingrediente>
+          <valor>Cebolla chica bien picada</valor>
+          <cantidad>1</cantidad>
+        </ingrediente>
+        <ingrediente>
+          <valor>Diente de ajo bien picado</valor>
+          <cantidad>1</cantidad>
+        </ingrediente>
+        <ingrediente>
+          <valor>Huevos</valor>
+          <cantidad>3</cantidad>
+        </ingrediente>
+        <ingrediente>
+          <valor>Perejil picado</valor>
+          <cantidad>2 cucharadas</cantidad>
+        </ingrediente>
+        <ingrediente>
+          <valor>Manteca o mantequilla</valor>
+          <cantidad>1 cucharada</cantidad>
+        </ingrediente>
+        <ingrediente>
+          <valor>Sal y condimento</valor>
+          <cantidad>cantidad necesaria</cantidad>
+        </ingrediente>
+      </ingredientes>
+      <proceso>
+        <paso>1. Se baten muy bien los tres huevos y se les añade el arroz. EN la manteca derretida, se doran ligeramente la cebolla y el ajo picados
+        cuando estan listos se les agrega la mezcla de arroz con huevos y por ultimo la sal y el peregil. COn un tenedor se mezclan bien todos los ingredientes
+      y se deja que la tortilla se dore por un lado; luego se da vuelta para que se dore por el otro</paso>
+      </proceso>
+    </producto>
+  </seccion>
+  <seccion>
+    <nombre>Postres para adornar su mesa</nombre>
+  </seccion>
+</pasteleria>

@@ -1,0 +1,36 @@
+* {
+  font-size: 20px;
+  font-weight: bold;
+}
+seccion {
+  display: block;
+}
+nombre {
+  color: red;
+  font-family: 'Comic Sans Ms', 'Comic Sans', cursive;
+}
+titulo {
+  display: block;
+  color: pink;
+  text-align: center;
+}
+ingrediente {
+  display: block;
+}
+valor {
+  color: lightgreen;
+  margin-right: 1.5em;
+  font-weight: normal;
+}
+paso {
+  display: block;
+  color: blue;
+  font-weight: normal;
+}
+ingredientes {
+    display: block;
+    margin-left: 1em;
+}
+cantidad {
+  font-weight: normal;
+}
