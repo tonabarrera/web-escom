@@ -11,20 +11,11 @@
   <script src="js/logica.js"></script>
 </head>
 <body onload="init()">
-  <div id="sample">
-    <div style="width:100%; white-space:nowrap;">
-      <span style="display: inline-block; vertical-align: top; width:200px">
-        <div id="myPaletteDiv" style="border: solid 1px black; height: 720px"></div>
-      </span>
-
-      <span style="display: inline-block; vertical-align: top; width:60%">
-        <div id="myDiagramDiv" style="border: solid 1px black; height: 720px"></div>
-      </span>
-        <div id="myInspectorDiv" class="inspector"> </div>
-    </div>
+    <div id="myPaletteDiv"></div>
+    <div id="myDiagramDiv"></div>
+    <div id="myInspectorDiv" class="inspector"></div>
     <button id="SaveButton" onclick="save()">Guardar Diagrama</button>
     <button onclick="load()">Cargar Diagrama</button>
     <button>Generar Codigo</button>
-  </div>
 </body>
 </html>
