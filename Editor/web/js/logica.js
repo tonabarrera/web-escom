@@ -200,7 +200,6 @@ function nodeStyle() {
     myDiagram.doFocus = customFocus;
     myPalette.doFocus = customFocus;
     function isReadOnly(propertyName, newValue) {
-        debugger;
         if (propertyName.category==="Start" || propertyName.category==="End")
             return true;
         return false;

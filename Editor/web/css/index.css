@@ -1,0 +1,50 @@
+.wrapper {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+.code-wrapper {
+    margin: 0 1rem;
+}
+
+header {
+    margin:0 auto;
+    width: 800px;
+}
+header h2, header h3 {
+    text-align: right;
+}
+.elements-bar p {
+    text-align: center;
+}
+.tools p {
+    text-align: center;
+}
+.tools {
+    display:flex;
+    flex-direction: column;
+    align-self:flex-start;
+}
+#myPaletteDiv {
+    width: 200px;
+    height: 600px;
+    border: 1px solid black;
+}
+#myDiagramDiv {
+    width: 800px;
+    height: 600px;
+    border: 1px solid black;
+}
+
+.tools button {
+    font-size: 0.9em;
+    background: #212121;
+    color:white;
+    padding: 1rem 1rem;
+    border:none;
+    font-weight: bold;
+    margin-top: .5rem;
+}
+.tools button:hover {
+    background: black;
+}
