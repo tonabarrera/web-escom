@@ -44,6 +44,8 @@ header h2, header h3 {
     border:none;
     font-weight: bold;
     margin-top: .5rem;
+    min-width: 181px;
+    width: 181px;
 }
 .tools button:hover {
     background: black;

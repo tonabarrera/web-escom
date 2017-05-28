@@ -23,6 +23,8 @@ see also: dataInspector.js, dataInspector.html
   background-color: #212121; /* Grey 900 */
   color: #F5F5F5; /* Grey 100 */
   cursor: default;
+  min-width: 213px;
+  width: 213px;
 }
 
 .inspector table {

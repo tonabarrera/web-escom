@@ -260,3 +260,19 @@ function load() {
         }
     });
 }
+
+function generateCode(){
+    var data = myDiagram.model.toJson();
+    var datos =JSON.parse(data);
+    var nodos = datos.nodeDataArray;
+    var links = datos.linkDataArray;
+    var elemento = links[0];
+    while (true) {
+        var key = elemento.from;
+        console.log("buscar en nodos e imprimir informacion");
+        var siguiente = elemento.to;
+        // siguiente existe en linkdataArray.from?
+        // si no entonces sal
+        // si existe entonces elemento = ese sigueinte
+    }
+}
