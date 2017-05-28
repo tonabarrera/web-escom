@@ -2,7 +2,13 @@ function init() {
     var goMake = go.GraphObject.make;  // for conciseness in defining templates
 
     myDiagram = goMake(go.Diagram, "myDiagramDiv", {
-        initialContentAlignment: go.Spot.Center, allowDrop: true, "LinkDrawn": showLinkLabel, "LinkRelinked": showLinkLabel
+        "animationManager.isEnabled":false,
+        initialContentAlignment: go.Spot.Center, 
+        allowDrop: true, 
+        "LinkDrawn": showLinkLabel, 
+        "LinkRelinked": showLinkLabel,
+        "model.linkFromPortIdProperty": "fromPort",
+        "model.linkToPortIdProperty": "toPort"
     });
 
     // when the document is modified, add a "*" to the title and enable the "Save" button
@@ -24,6 +30,7 @@ function nodeStyle() {
     // converted by the Point.parse static method.
     // If the Node.location is changed, it updates the "loc" property of the node data,
     // converting back using the Point.stringify static method.
+    
     new go.Binding("location", "loc", go.Point.parse).makeTwoWay(go.Point.stringify), {
         // the Node.location is at the center of each node
         locationSpot: go.Spot.Center,
@@ -60,8 +67,10 @@ function nodeStyle() {
         goMake(go.Node, "Spot", nodeStyle(),
         // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
         goMake(go.Panel, "Auto",
-            goMake(go.Shape, "Rectangle", {fill: null, stroke: blackText},
-            new go.Binding("figure", "figure")),
+            goMake(go.Shape, "Rectangle", {stroke: blackText, strokeWidth: 2, fill: "white"},
+            new go.Binding("figure", "figure"),
+            new go.Binding("fill", "color"),
+            new go.Binding("stroke", "contorno")),
             goMake(go.TextBlock, {
                 font: "bold 11pt Helvetica, Arial, sans-serif",
                 stroke: blackText,
@@ -70,7 +79,8 @@ function nodeStyle() {
                 wrap: go.TextBlock.WrapFit,
                 editable: true
             },
-            new go.Binding("text").makeTwoWay())
+            new go.Binding("text").makeTwoWay(),
+            new go.Binding("stroke", "fuente"))
         ),
         // four named ports, one on each side:
         makePort("T", go.Spot.Top, false, true),
@@ -79,25 +89,28 @@ function nodeStyle() {
         makePort("B", go.Spot.Bottom, true, false)
     ));
 
-    myDiagram.nodeTemplateMap.add("Start", goMake(go.Node, "Spot", nodeStyle(),
+    myDiagram.nodeTemplateMap.add("Start", goMake(go.Node, "Spot",
         goMake(go.Panel, "Auto",
-            goMake(go.Shape, "Circle", {minSize: new go.Size(40, 40), fill: null, stroke: blackText}),
+            goMake(go.Shape, "Circle", {minSize: new go.Size(40, 40), stroke: blackText, strokeWidth: 2, fill: "white"}, 
+            new go.Binding("fill", "color"),
+            new go.Binding("stroke", "contorno")),
             goMake(go.TextBlock, "Start",
                 {font: "bold 11pt Helvetica, Arial, sans-serif", stroke: blackText},
-            new go.Binding("text"))
-        ),
-        // three named ports, one on each side except the top, all output only:
-        makePort("L", go.Spot.Left, true, false),
-        makePort("R", go.Spot.Right, true, false),
+            new go.Binding("text"),
+            new go.Binding("stroke", "fuente"))
+        ),nodeStyle(),
         makePort("B", go.Spot.Bottom, true, false)
     ));
 
     myDiagram.nodeTemplateMap.add("End", goMake(go.Node, "Spot", nodeStyle(),
         goMake(go.Panel, "Auto",
-            goMake(go.Shape, "Circle", {minSize: new go.Size(40, 40), fill: null, stroke: blackText}),
+            goMake(go.Shape, "Circle", {minSize: new go.Size(40, 40), stroke: blackText, fill: "white", strokeWidth: 2},
+            new go.Binding("fill", "color"),
+            new go.Binding("stroke", "contorno")),
             goMake(go.TextBlock, "End",
                 {font: "bold 11pt Helvetica, Arial, sans-serif", stroke: blackText},
-            new go.Binding("text"))
+            new go.Binding("text"),
+            new go.Binding("stroke", "fuente"))
         ),
         // three named ports, one on each side except the bottom, all input only:
         makePort("T", go.Spot.Top, false, true),
@@ -106,11 +119,12 @@ function nodeStyle() {
     ));
 
     // replace the default Link template in the linkTemplateMap
-    myDiagram.linkTemplate = goMake(go.Link,  // the whole link panel
+    myDiagram.linkTemplate = goMake(go.Link, 
     {
         routing: go.Link.AvoidsNodes,
         curve: go.Link.JumpOver,
-        corner: 5, toShortLength: 4,
+        corner: 5, 
+        toShortLength: 4,
         relinkableFrom: true,
         relinkableTo: true,
         reshapable: true,
@@ -163,13 +177,13 @@ function nodeStyle() {
     {
         nodeTemplateMap: myDiagram.nodeTemplateMap,  // share the templates used by myDiagram
         model: new go.GraphLinksModel([  // specify the contents of the Palette
-            { category: "Start", text: "Inicio"},
-            { text: "Sentencia\n Simple" },
-            {text: "Declarar\n variable", figure:"createRequest"},
-            {text: "Entrada \n de datos", figure: "document"},
-            {text: "Salida\n de datos", figure:"card"},
-            { text: "???", figure: "Diamond" },
-            { category: "End", text: "Fin" }
+            { category: "Start", text: "Inicio", color:"white", contorno:"black", "fuente":"black"},
+            { text: "Sentencia\n Simple", color:"lightblue", contorno:"black", "fuente":"black"},
+            {text: "Declarar\n variable", figure:"createRequest", color:"lightgreen", contorno:"black", fuente:"black"},
+            {text: "Entrada \n de datos", figure: "document", color:"#754d68", contorno:"black", fuente:"black"},
+            {text: "Salida\n de datos", figure:"card", color:"lightyellow", contorno:"black", fuente:"black"},
+            {text: "Condición\nCiclo", figure: "Diamond", color:"#3b4b5b", contorno:"black", fuente:"black"},
+            {category: "End", text: "Fin", color:"#d0204e", contorno:"black", fuente:"black"}
         ])
     });
 
@@ -185,8 +199,33 @@ function nodeStyle() {
 
     myDiagram.doFocus = customFocus;
     myPalette.doFocus = customFocus;
-
-
+    function isReadOnly(propertyName, newValue) {
+        debugger;
+        if (propertyName.category==="Start" || propertyName.category==="End")
+            return true;
+        return false;
+    }
+    var inspector = new Inspector('myInspectorDiv', myDiagram,
+          {
+            // uncomment this line to only inspect the named properties below instead of all properties on each object:
+            includesOwnProperties: false,
+            properties: {
+              "text": {readOnly:isReadOnly},
+              // color would be automatically added for nodes, but we want to declare it a color also:
+              "color": {show: Inspector.showIfPresent, type: 'color'},
+              "contorno":{show: Inspector.showIfPresent, type: 'color'},
+              "fuente":{show: Inspector.showIfPresent, type: 'color'}
+              // Comments and LinkComments are not in any node or link data (yet), so we add them here:
+            }
+          });
+     
+    myDiagram.model = go.Model.fromJson({
+        class: "go.GraphLinksModel", 
+        linkFromPortIdProperty: "fromPort",
+        linkToPortIdProperty: "toPort",
+        nodeDataArray: [{category:"Start", text:"Inicio", color:"white", contorno:"black", fuente:"black", key:-1, loc:"0 0"} ],
+        linkDataArray: []});
+        inspector.inspectObject(myDiagram.nodes.first().data);
 } // end init
 
 // Make all ports on a node visible when the mouse is over the node
