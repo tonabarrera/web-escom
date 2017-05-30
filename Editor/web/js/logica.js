@@ -288,7 +288,7 @@ function generateCode(){
         }
     }
     debugger;
-    let codigo = "";
+    let codigo = "#include <stdio.h>\n";
     while (existe) {
         let key = elemento.from;
         for (let j=0; j<nodos.length; j++){
@@ -301,7 +301,7 @@ function generateCode(){
                 } else if (nodos[j].category === "Input") {
                     codigo += `\tscanf(%i, &${nodos[j].text});\n`;
                 } else if (nodos[j].category === "Output") {
-                    codigo += `\tprintf("%i", ${nodos[j].text});\n`;
+                    codigo += `\tprintf("${nodos[j].text}");\n`;
                 } else if (nodos[j].category === "Simple") {
                     codigo += "\t" +nodos[j].text + ";\n";
                 }
