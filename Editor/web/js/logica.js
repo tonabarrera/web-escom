@@ -170,13 +170,14 @@ function init() {
     // Esto crea la paleta de inicio
     myPalette = goMake(go.Palette, "myPaletteDiv", {
         nodeTemplateMap: myDiagram.nodeTemplateMap,
+        "animationManager.isEnabled":false,
         model: new go.GraphLinksModel([
-            { category: "Start", text: "Inicio", color:"white", contorno:"black", "fuente":"black"},
-            { text: "Sentencia\n Simple", color:"lightblue", contorno:"black", "fuente":"black"},
-            {text: "Declarar\n variable", figure:"createRequest", color:"lightgreen", contorno:"black", fuente:"black"},
-            {text: "Salida \n de datos", figure: "document", color:"#754d68", contorno:"black", fuente:"black"},
-            {text: "Entrada\n de datos", figure:"card", color:"lightyellow", contorno:"black", fuente:"black"},
-            {text: "Condición\nCiclo", figure: "Diamond", color:"#3b4b5b", contorno:"black", fuente:"black"},
+            {category: "Start", text: "Inicio", color:"white", contorno:"black", "fuente":"black"},
+            {category: "Simple", text: "Sentencia\n Simple", color:"lightblue", contorno:"black", "fuente":"black"},
+            {category: "Declare", text: "Declarar\n variable", figure:"createRequest", color:"lightgreen", contorno:"black", fuente:"black"},
+            {category: "Output", text: "Salida \n de datos", figure: "document", color:"#754d68", contorno:"black", fuente:"black"},
+            {category: "Input", text: "Entrada\n de datos", figure:"card", color:"lightyellow", contorno:"black", fuente:"black"},
+            {category: "Condition", text: "Condición\nCiclo", figure: "Diamond", color:"#3b4b5b", contorno:"black", fuente:"black"},
             {category: "End", text: "Fin", color:"#d0204e", contorno:"black", fuente:"black"}
         ])
     });
@@ -266,13 +267,64 @@ function generateCode(){
     var datos =JSON.parse(data);
     var nodos = datos.nodeDataArray;
     var links = datos.linkDataArray;
-    var elemento = links[0];
-    while (true) {
-        var key = elemento.from;
-        console.log("buscar en nodos e imprimir informacion");
-        var siguiente = elemento.to;
-        // siguiente existe en linkdataArray.from?
-        // si no entonces sal
-        // si existe entonces elemento = ese sigueinte
+    let id;
+    for (let pos=0; pos<nodos.length; pos++){
+        if (nodos[pos].category === "Start") {
+            id = nodos[pos].key;
+            break;
+        } else {
+            console.log("NO lo haga");
+        }
     }
+    let elemento;
+    let existe = false;
+    for (let pos=0; pos<links.length; pos++){
+        if (links[pos].from === id) {
+            elemento = links[pos];
+            existe = true;
+            break;
+        } else {
+            console.log("NO lo haga(2)");
+        }
+    }
+    debugger;
+    let codigo = "";
+    while (existe) {
+        let key = elemento.from;
+        for (let j=0; j<nodos.length; j++){
+            if (nodos[j].key === key) {
+                console.log(nodos[j].category + " " + nodos[j].text);
+                if (nodos[j].category === "Start"){
+                    codigo += "void main(void){\n";
+                } else if (nodos[j].category === "Declare") {
+                    codigo += "\tint " + nodos[j].text + ";\n";
+                } else if (nodos[j].category === "Input") {
+                    codigo += `\tscanf(%i, &${nodos[j].text});\n`;
+                } else if (nodos[j].category === "Output") {
+                    codigo += `\tprintf("%i", ${nodos[j].text});\n`;
+                } else if (nodos[j].category === "Simple") {
+                    codigo += "\t" +nodos[j].text + ";\n";
+                }
+            }
+        }
+        var siguiente = elemento.to;
+        debugger;
+        for (let i=0; i<links.length; i++){
+            if (links[i].from === siguiente) {
+                existe = true;
+                elemento = links[i];
+                break;
+            } else {
+                existe = false;
+            }
+        }
+    }
+    /*Ultimo nodo*/
+    for (let j=0; j<nodos.length; j++) {
+        if (nodos[j].key === siguiente) {
+            console.log(nodos[j].category + " " + nodos[j].text);
+            codigo += "\treturn;\n}";
+        }
+    }
+    console.log(codigo);
 }

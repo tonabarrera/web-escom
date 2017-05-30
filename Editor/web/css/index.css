@@ -40,12 +40,12 @@ header h2, header h3 {
     font-size: 0.9em;
     background: #212121;
     color:white;
-    padding: 1rem 1rem;
+    padding: 1rem 1.5rem;
     border:none;
     font-weight: bold;
     margin-top: .5rem;
     min-width: 181px;
-    width: 181px;
+    display:block;
 }
 .tools button:hover {
     background: black;
