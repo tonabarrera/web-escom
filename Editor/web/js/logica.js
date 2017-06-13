@@ -77,6 +77,32 @@ function init() {
         makePort("R", go.Spot.Right, true, true),
         makePort("B", go.Spot.Bottom, true, false)
     ));
+    // Condition
+    myDiagram.nodeTemplateMap.add("Condition", goMake(go.Node, "Spot", nodeStyle(),
+        goMake(go.Panel, "Auto",
+            goMake(go.Shape, "Diamond", {
+                minSize:new go.Size(60, 60),
+                stroke:blackText, 
+                strokeWidth:2, 
+                fill:"white"
+            }, 
+            new go.Binding("fill", "color"),
+            new go.Binding("stroke", "contorno")),
+            goMake(go.TextBlock, "Start", {
+                font: "bold 10pt Helvetica, Arial, sans-serif", 
+                stroke: blackText,
+                maxSize: new go.Size(160, NaN),
+                wrap: go.TextBlock.WrapFit,
+                editable: true
+            },
+            new go.Binding("text").makeTwoWay(),
+            new go.Binding("stroke", "fuente"))
+        ),
+        makePort("T", go.Spot.Top, false, true),
+        makePort("L", go.Spot.Left, true, false),
+        makePort("R", go.Spot.Right, true, false),
+        makePort("B", go.Spot.Bottom, true, false)
+    ));
 
     //Nodo inicio
     myDiagram.nodeTemplateMap.add("Start", goMake(go.Node, "Spot", nodeStyle(),
@@ -177,8 +203,9 @@ function init() {
             {category: "Declare", text: "Declarar\n variable", figure:"createRequest", color:"lightgreen", contorno:"black", fuente:"black"},
             {category: "Output", text: "Salida \n de datos", figure: "document", color:"#754d68", contorno:"black", fuente:"black"},
             {category: "Input", text: "Entrada\n de datos", figure:"card", color:"lightyellow", contorno:"black", fuente:"black"},
-            {category: "Condition", text: "Condición\nCiclo", figure: "Diamond", color:"#3b4b5b", contorno:"black", fuente:"black"},
-            {category: "End", text: "Fin", color:"#d0204e", contorno:"black", fuente:"black"}
+            {category: "While", text: "Ciclo", figure: "Diamond", color:"#3b4b5b", contorno:"black", fuente:"black"},
+            {category: "End", text: "Fin", color:"#d0204e", contorno:"black", fuente:"black"},
+            {category: "Condition", text: "Condición", figure: "Diamond", color:"purple", contorno:"balck", fuente:"black"}
         ])
     });
 
@@ -230,34 +257,61 @@ function showPorts(node, show) {
     });
 }
 
-
 // Recuperamos el diagrama y lo guardamos
-function save() {
+$('#SaveButton').on('click', function(e) {
+    console.log("hola");
     var diagrama = myDiagram.model.toJson();
+    let nombre = prompt("Ingrese un nombre de archivo sin extención", 'diagrama');
     $.ajax({
         url: "GuardarDiagrama",
         type: "POST",
-        data: {"diagrama":diagrama},
+        data: {"diagrama":diagrama, "nombre": nombre},
         success: function(json){
             console.log(json);
+            alert('Diagrama guardado');
         },
         error: function(xhr, errmsg, err) {
             console.log(xhr.status+": "+xhr.responseText);
+            alert('No se pudo guardar el proyecto');
         }
     });
     myDiagram.isModified = false;
-}
+});
 /*Funcion para cargar el diagrama en el canvas*/
-function load() {
+function consultar_archivos() {
+    $.ajax({
+        url: "ConsultarArchivos",
+        type: "POST",
+        success: function(json){
+            debugger;
+            let archivos = "";
+            for (let elemento of json.diagramas) {
+                archivos += elemento.nombre;
+                archivos += "\n";
+            }
+            var archivo = prompt(archivos+'Ingrese el nombre del archivo a cargar', 'diagrama.json');
+            load(archivo);
+        },
+        error: function(xhr, errmsg, err) {
+            debugger;
+            console.log(xhr.status+": "+xhr.responseText);
+            alert('Ups ocurrio un error');
+        }
+    });
+}
+
+function load(archivo) {
     $.ajax({
         url: "CargarDiagrama",
         type: "POST",
+        data: {"nombre": archivo},
         success: function(json){
             console.log(json);
             myDiagram.model = go.Model.fromJson(json);
         },
         error: function(xhr, errmsg, err) {
             console.log(xhr.status+": "+xhr.responseText);
+            alert('Ups ocurrio un error');
         }
     });
 }
@@ -287,28 +341,73 @@ function generateCode(){
             console.log("NO lo haga(2)");
         }
     }
-    debugger;
-    let codigo = "#include <stdio.h>\n";
+    var variables_totales = new Array();
+    let codigo = "#include &ltstdio.h&gt\n";
+    let nodos_visitados = new Array();
     while (existe) {
         let key = elemento.from;
+        
         for (let j=0; j<nodos.length; j++){
             if (nodos[j].key === key) {
-                console.log(nodos[j].category + " " + nodos[j].text);
+                console.log("for"+nodos[j].category + " " + nodos[j].text);
                 if (nodos[j].category === "Start"){
                     codigo += "void main(void){\n";
                 } else if (nodos[j].category === "Declare") {
-                    codigo += "\tint " + nodos[j].text + ";\n";
+                    let var_nom = nodos[j].text.split(" ")[1];
+                    let var_tipo = nodos[j].text.split(" ")[0];
+                    variables_totales.push({"var_nom": var_nom, "var_tipo":var_tipo});
+                    codigo += "    "+var_tipo+" " + var_nom + ";\n";
                 } else if (nodos[j].category === "Input") {
-                    codigo += `\tscanf(%i, &${nodos[j].text});\n`;
+                    let aux_tipo = obtener_tipo(variables_totales, nodos[j].text);
+                    codigo += `    scanf(%${aux_tipo}, &${nodos[j].text});\n`;
                 } else if (nodos[j].category === "Output") {
-                    codigo += `\tprintf("${nodos[j].text}");\n`;
+                    let temp =nodos[j].text.split(',');
+                    let aux_tipo = 'i';
+                    if (temp.length <=1){
+                        if(buscar_variable(temp[0], variables_totales)) {
+                            aux_tipo = obtener_tipo(variables_totales, temp[0]);
+                            codigo += `    printf("%${aux_tipo}", ${temp[0]});\n`;
+                        } else {
+                            codigo += `    printf("${temp[0]}");\n`;
+                        }
+                    } else {
+                        let aux_var = temp[1];
+                        let contenido = temp[0];
+                        debugger;
+                        aux_var = aux_var.split(' ')[1];
+                        aux_tipo = obtener_tipo(variables_totales, aux_var);
+                        codigo += `    printf("${contenido}, %${aux_tipo}", ${aux_var});\n`;
+                    }
                 } else if (nodos[j].category === "Simple") {
-                    codigo += "\t" +nodos[j].text + ";\n";
+                    codigo += "    " +nodos[j].text + ";\n";
+                } else if (nodos[j].category === "Condition") {
+                    console.log("condicion " + nodos[j].text + "\n");
+                } else if (nodos[j].category === "While") {
+                    if (nodos_visitados.indexOf(key) === -1) {
+                        console.log("WHILE DO WHILE");
+                        codigo += `    while(${nodos[j].text}){\n`;
+                        nodos_visitados.push(key);
+                    } else {
+                        console.log("Cierro while");
+                        codigo += `    }\n`;
+                        let aux_key = key;
+                        for (let cont = 0; cont<links.length; cont++){
+                            if (links[cont].from === aux_key) {
+                                for (let otro=0; otro<nodos_visitados.length; otro++) {
+                                    if (links[cont].to === nodos_visitados[otro]) {
+                                        break;
+                                    } else {
+                                        elemento=links[cont];
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    }
                 }
             }
         }
         var siguiente = elemento.to;
-        debugger;
         for (let i=0; i<links.length; i++){
             if (links[i].from === siguiente) {
                 existe = true;
@@ -323,8 +422,33 @@ function generateCode(){
     for (let j=0; j<nodos.length; j++) {
         if (nodos[j].key === siguiente) {
             console.log(nodos[j].category + " " + nodos[j].text);
-            codigo += "\treturn;\n}";
+            codigo += "    return;\n}";
         }
     }
-    console.log(codigo);
+    $('#myCode').html('<pre>'+codigo+'</pre>');
+}
+
+function obtener_tipo(variables_totales, texto) {
+    let aux_tipo = 'i';
+    for (let i=0; i<variables_totales.length; i++){
+        if (variables_totales[i].var_nom === texto){
+            if (variables_totales[i].var_tipo==='char')
+                return 'c';
+            else if (variables_totales[i].var_tipo === 'float')
+                return 'f';
+            else if (variables_totales[i].var_tipo === 'double')
+                return 'lf';
+            break;
+        }
+    }
+    return 'i';
+}
+
+function buscar_variable(variable, variables) {
+    for (let i=0; i<variables.length; i++){
+        if (variables[i].var_nom === variable){
+            return true;
+        }
+    }
+    return false;
 }

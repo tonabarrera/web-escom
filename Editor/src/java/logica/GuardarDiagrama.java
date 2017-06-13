@@ -37,7 +37,8 @@ public class GuardarDiagrama extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             String nana = request.getParameter("diagrama");
-            File outputFile = new File(getServletContext().getRealPath("/")+"diagramas\\diagrama.json");
+            String nombre = request.getParameter("nombre");
+            File outputFile = new File(getServletContext().getRealPath("/")+"diagramas\\"+nombre+".json");
             System.out.println(outputFile.getAbsolutePath());
             FileWriter fout = new FileWriter(outputFile);
             fout.write(nana);

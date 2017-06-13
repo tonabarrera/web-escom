@@ -24,7 +24,6 @@ see also: dataInspector.js, dataInspector.html
   color: #F5F5F5; /* Grey 100 */
   cursor: default;
   min-width: 213px;
-  width: 213px;
 }
 
 .inspector table {

@@ -4,14 +4,12 @@
   <title>Editor de diagramas de flujo</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <link rel="stylesheet" href="css/normalize.css"/>
   <link rel="stylesheet" href="css/DataInspector.css"/>
   <link rel="stylesheet" href="css/index.css"/>
   <script src="js/jquery.min.js"></script>
   <script src="js/go.js"></script>
   <script src="js/DataInspector.js"></script>
-  <script src="js/logica.js"></script>
 </head>
 <body onload="init()">
   <header>
@@ -29,14 +27,15 @@
     <aside class="tools">
       <p>Barra de herramientas</p>
       <div id="myInspectorDiv" class="tool-element inspector"></div>
-      <button id="SaveButton" class="tool-element save" onclick="save()">Guardar Diagrama</button>
-      <button onclick="load()" class="tool-element load">Cargar Diagrama</button>
+      <button onclick="consultar_archivos()" class="tool-element load">Cargar Diagrama</button>
+      <button id="SaveButton" class="tool-element save">Guardar Diagrama</button>
       <button onclick="generateCode()">Generar Codigo</button>
     </aside>
   </section>
   <section class="code-wrapper">
     <p>Código Generado</p>
-    <div class="code"></div>
+    <div class="code" id="myCode"></div>
   </section>
+    <script src="js/logica.js"></script>
 </body>
 </html>
